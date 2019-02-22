@@ -1,0 +1,14 @@
+.active{
+    display: unset !important;
+}
+
+
+#dropdown-menu{
+    width: 100%;
+}
+
+.button.is-loading::after, .control.is-loading::after, .loader, .select.is-loading::after {
+	display: block;
+	height: 2em;
+	width: 2em;
+}

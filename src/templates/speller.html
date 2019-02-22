@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='touchup.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='vue.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='suggestions.js') }}"></script>
+    <title>Runyankole Spell Checker</title>
+</head>
+<body>
+<section id="project" class="hero is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="field">
+                <div class="control" :class="{'is-loading':is_searching}">
+                    <input v-model="words" id="box" class="input is-large" type="text" placeholder="...">
+                    <div class="dropdown-menu" :class="{active:is_active}" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content">
+                            <a @click="update_words(suggestion)" v-for="suggestion in suggestions" v-text="suggestion" href="#" class="dropdown-item">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
