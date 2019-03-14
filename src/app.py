@@ -12,7 +12,7 @@ def home():
 def suggestions(word):
     from spellchecker import SpellChecker
 
-    checker = SpellChecker(language="", local_dictionary="D:/Softwares/Application/runya-speller/runya.json.gz")
+    checker = SpellChecker(language="", local_dictionary="runya.json.gz")
     candidates = checker.candidates(word)
     candidates = list(candidates)
 

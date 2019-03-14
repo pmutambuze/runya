@@ -1,6 +1,6 @@
 
 function init() {
-    let app = new Vue({
+    var app = new Vue({
         el: '#project',
         data: {
             words : "",
@@ -16,12 +16,12 @@ function init() {
                     if (result.ok){
                         result.json().then(function (data) {
                             app.is_active = true;
-                            let words = data;
+                            var words = data;
                             console.log(words);
                             app.suggestions = words;
                         })
                     }
-                });
+                }).catch(function () {this.is_searching = false});
             }
         },
         methods:{
@@ -36,6 +36,3 @@ function init() {
 window.addEventListener('load', function () {
     init();
 });
-
-
-
