@@ -11,13 +11,12 @@ function init() {
         watch:{
             words : function () {
                 app.is_searching = true;
-                fetch("http://127.0.0.1:5000/suggest/" + app.words).then(function (result) {
+                fetch("/suggest/" + app.words).then(function (result) {
                     app.is_searching = false;
                     if (result.ok){
                         result.json().then(function (data) {
                             app.is_active = true;
                             var words = data;
-                            console.log(words);
                             app.suggestions = words;
                         })
                     }
