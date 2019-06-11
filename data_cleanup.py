@@ -2,9 +2,9 @@ import json
 
 def do_clean():
 	data = ""
-	with open("raw.txt", 'r') as file:
+	with open("raw_luganda.txt", 'rb') as file:
 		print("Reading file...")
-		data = file.read()
+		data = str(file.read())
 
 	print("Read done.")
 	data = data.lower()
@@ -13,7 +13,7 @@ def do_clean():
 	print("Replace done.")
 	final_data = ""
 	for letter in data:
-		if letter in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', "’", '\n']:
+		if letter in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', "'", "’", '\n']:
 			final_data += letter
 		else:
 			print("Skipping letter.")
@@ -36,10 +36,11 @@ def do_clean():
 
 
 
-	with open("results.txt", 'w') as file:
+	with open("luganda.json", 'w') as file:
 		print("Writing to file")
-		# file.write(str(json.dumps(dictionary)))
-		file.write(final_data)
+		file.write(str(json.dumps(dictionary)))
+		json.loads(json.dumps(dictionary), encoding='utf8')
+		# file.write(final_data)
 		# file.write(str(final_data_list))
 		print("Done.")
 

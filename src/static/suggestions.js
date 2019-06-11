@@ -11,7 +11,7 @@ function init() {
         watch:{
             words : function () {
                 app.is_searching = true;
-                fetch("/suggest/" + app.words).then(function (result) {
+                fetch("/suggest/" + language + "/" + app.words).then(function (result) {
                     app.is_searching = false;
                     if (result.ok){
                         result.json().then(function (data) {
