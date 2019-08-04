@@ -11,11 +11,11 @@ def setup():
     global luganda_checker, runyankole_checker
     if not luganda_checker:
         luganda_checker = SpellChecker(language=None, case_sensitive=False)
-        luganda_checker.word_frequency.load_dictionary('./luganda.json')
+        luganda_checker.word_frequency.load_dictionary('src/luganda.json')
 
     if not runyankole_checker:
         runyankole_checker = SpellChecker(language=None, case_sensitive=False)
-        runyankole_checker.word_frequency.load_dictionary('./runya.json')
+        runyankole_checker.word_frequency.load_dictionary('src/runya.json')
 
 
 @app.route("/suggest/luganda/<string:word>")
