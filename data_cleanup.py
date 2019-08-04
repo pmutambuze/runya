@@ -1,8 +1,9 @@
 import json
 
-def do_clean():
+
+def do_clean(language, output_raw_words=False):
 	data = ""
-	with open("raw_luganda.txt", 'rb') as file:
+	with open(f"raw_{language}.txt", 'rb') as file:
 		print("Reading file...")
 		data = str(file.read())
 
@@ -20,7 +21,7 @@ def do_clean():
 
 	final_data = final_data.split("\n")
 	final_data.sort()
-	final_data = [word for word in final_data if not word is ""]
+	final_data = [word for word in final_data if word is not ""]
 
 	dictionary = {}
 	for word in final_data:
@@ -29,19 +30,20 @@ def do_clean():
 		except KeyError:
 			dictionary[word] = 1
 
-	# final_data_list = final_data
-	final_data = "\n".join(final_data)
-
-
-
-
-
-	with open("luganda.json", 'w') as file:
-		print("Writing to file")
+	with open(f"{language}.json", 'w') as file:
+		print("Writing to .json file")
 		file.write(str(json.dumps(dictionary)))
-		json.loads(json.dumps(dictionary), encoding='utf8')
-		# file.write(final_data)
-		# file.write(str(final_data_list))
 		print("Done.")
 
-do_clean()
+	if output_raw_words:
+		raw_word_list = list(final_data)
+		raw_words = "\n".join(raw_word_list)
+
+		with open(f"{language}.txt", 'w') as file:
+			print("Writing to .txt file")
+			json.loads(json.dumps(dictionary), encoding='utf8')
+			file.write(raw_words)
+
+
+do_clean('runya')
+do_clean('luganda', True)
