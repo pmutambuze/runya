@@ -3,6 +3,12 @@ from spellchecker import SpellChecker
 
 luganda_checker = None
 runyankole_checker = None
+luganda_checker = SpellChecker(language=None, case_sensitive=False)
+luganda_checker.word_frequency.load_dictionary('./data/luganda.json')
+
+runyankole_checker = SpellChecker(language=None, case_sensitive=False)
+runyankole_checker.word_frequency.load_dictionary('./data/runya.json')
+
 app = Flask(__name__)
 
 
@@ -46,10 +52,4 @@ def runyankole():
 
 
 if __name__ == '__main__':
-    luganda_checker = SpellChecker(language=None, case_sensitive=False)
-    luganda_checker.word_frequency.load_dictionary('./data/luganda.json')
-
-    runyankole_checker = SpellChecker(language=None, case_sensitive=False)
-    runyankole_checker.word_frequency.load_dictionary('./data/runya.json')
-
     app.run(debug=True)
