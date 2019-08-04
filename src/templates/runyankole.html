@@ -4,38 +4,59 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='touchup.css') }}">
-    <script>var language = 'runyankole';</script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/nunito/font.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='materialize.min.css') }}">
+    <script>const language = 'runyankole';</script>
     <script type="text/javascript" src="{{ url_for('static', filename='vue.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='suggestions.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='ckeditor.js') }}"></script>
+{#    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>#}
     <title>Runyankole Spell Checker</title>
 </head>
 <body>
 <section class="hero is-fullheight">
+    <div class="hero-head">
+        <nav>
+    <div class="nav-wrapper teal">
+      <a href="#" class="brand-logo padding-left">Runyankole Spell Checker</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+{#        <li><a href="sass.html">Sass</a></li>#}
+{#        <li><a href="badges.html">Components</a></li>#}
+{#        <li><a href="collapsible.html">JavaScript</a></li>#}
+      </ul>
+    </div>
+  </nav>
+    </div>
     <div class="hero-body">
         <div class="container">
             <div class="columns">
-                <div class="column is-three-quarters">
-                    <textarea spellcheck="false" name="content" id="editor"></textarea>
+                <div class="column is-8">
+                    <div class="card">
+                        <textarea spellcheck="false" name="content" id="editor"></textarea>
+                    </div>
                 </div>
-                <div id="spell-check" class="column is-one-quarter">
-                    <ul>
+                <div id="spell-check" class="column is-one-quarter is-offset-1 has-text-centered spell-check card">
+                    <h4 class="subtitle is-size-3">Misspelled Words</h4>
+                    <ul class="is-text is-size-5">
                         <li v-for="word in incorrectlySpelled" v-text="word"></li>
                     </ul>
-                </div>
-            </div>
-            <div id="project" class="field container">
-                <div class="control" :class="{'is-loading':is_searching}">
-                    <input v-model="words" id="box" class="input is-large" type="text" placeholder="...">
-                    <div class="dropdown-menu" :class="{active:is_active}" id="dropdown-menu" role="menu">
-                        <div class="dropdown-content">
-                            <a @click="update_words(suggestion)" v-for="suggestion in suggestions" v-text="suggestion" href="#" class="dropdown-item">
-                            </a>
-                        </div>
-                    </div>
+                    <span class="is-text is-size-6" v-if="incorrectlySpelled.length < 1">No misspelled words</span>
                 </div>
             </div>
         </div>
+{#        <div class="container">#}
+{#            <div id="project" class="field">#}
+{#                <div class="control" :class="{'is-loading':is_searching}">#}
+{#                    <input v-model="words" id="box" class="input is-large" type="text" placeholder="...">#}
+{#                    <div class="dropdown-menu" :class="{active:is_active}" id="dropdown-menu" role="menu">#}
+{#                        <div class="dropdown-content">#}
+{#                            <a @click="update_words(suggestion)" v-for="suggestion in suggestions" v-text="suggestion" href="#" class="dropdown-item">#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
     </div>
 </section>
 </body>
