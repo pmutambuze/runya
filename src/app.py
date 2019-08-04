@@ -4,18 +4,21 @@ from spellchecker import SpellChecker
 luganda_checker = None
 runyankole_checker = None
 
-app = Flask(__name__)
-
 
 def setup():
     global luganda_checker, runyankole_checker
     if not luganda_checker:
         luganda_checker = SpellChecker(language=None, case_sensitive=False)
-        luganda_checker.word_frequency.load_dictionary('src/luganda.json')
+        luganda_checker.word_frequency.load_dictionary('data/luganda.json')
 
     if not runyankole_checker:
         runyankole_checker = SpellChecker(language=None, case_sensitive=False)
-        runyankole_checker.word_frequency.load_dictionary('src/runya.json')
+        runyankole_checker.word_frequency.load_dictionary('data/runya.json')
+
+
+setup()
+
+app = Flask(__name__)
 
 
 @app.route("/suggest/luganda/<string:word>")
