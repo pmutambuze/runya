@@ -27,7 +27,7 @@ def is_known_luganda(word):
 
 @app.route("/is-known/runyankole/<string:word>")
 def is_known_runyankole(word):
-    return jsonify(len(runyankole_checker.known([word.lower()])) > 0)
+    return jsonify({'isKnown': len(runyankole_checker.known([word.lower()])) > 0})
 
 
 @app.route('/')

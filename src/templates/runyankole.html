@@ -7,13 +7,24 @@
     <script>var language = 'runyankole';</script>
     <script type="text/javascript" src="{{ url_for('static', filename='vue.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='suggestions.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='ckeditor.js') }}"></script>
     <title>Runyankole Spell Checker</title>
 </head>
 <body>
-<section id="project" class="hero is-fullheight">
+<section class="hero is-fullheight">
     <div class="hero-body">
         <div class="container">
-            <div class="field">
+            <div class="columns">
+                <div class="column is-three-quarters">
+                    <textarea spellcheck="false" name="content" id="editor"></textarea>
+                </div>
+                <div id="spell-check" class="column is-one-quarter">
+                    <ul>
+                        <li v-for="word in incorrectlySpelled" v-text="word"></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="project" class="field container">
                 <div class="control" :class="{'is-loading':is_searching}">
                     <input v-model="words" id="box" class="input is-large" type="text" placeholder="...">
                     <div class="dropdown-menu" :class="{active:is_active}" id="dropdown-menu" role="menu">
