@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="02d7763e-1df3-4165-90e0-10aea534daa0" name="Default" comment="Add runya">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="02d7763e-1df3-4165-90e0-10aea534daa0" name="Default" comment="Setup test">
       <change beforePath="$PROJECT_DIR$/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -163,7 +162,7 @@
       <updated>1537682056869</updated>
       <workItem from="1552579852221" duration="1613000" />
       <workItem from="1560239164111" duration="2166000" />
-      <workItem from="1564935318685" duration="14259000" />
+      <workItem from="1564935318685" duration="14419000" />
     </task>
     <task id="LOCAL-00001" summary="Setup for heroku deploy">
       <created>1552581633566</created>
@@ -221,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564959919457</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Setup test">
+      <created>1564960296743</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1564960296743</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +254,8 @@
     <MESSAGE value="Improve font&#10;Move to material" />
     <MESSAGE value="Improve speller init location" />
     <MESSAGE value="Add runya" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add runya" />
+    <MESSAGE value="Setup test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Setup test" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/runya$app.coverage" NAME="app Coverage Results" MODIFIED="1564960248030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
