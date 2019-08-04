@@ -4,10 +4,10 @@ from spellchecker import SpellChecker
 luganda_checker = None
 runyankole_checker = None
 luganda_checker = SpellChecker(language=None, case_sensitive=False)
-luganda_checker.word_frequency.load_dictionary('./data/luganda.json')
+luganda_checker.word_frequency.load_dictionary('luganda.json')
 
 runyankole_checker = SpellChecker(language=None, case_sensitive=False)
-runyankole_checker.word_frequency.load_dictionary('./data/runya.json')
+runyankole_checker.word_frequency.load_dictionary('runya.json')
 
 app = Flask(__name__)
 
