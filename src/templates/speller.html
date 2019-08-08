@@ -4,19 +4,29 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='touchup.css') }}">
-    <title>Spell Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/nunito/font.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='materialize.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='vue.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='suggestions.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='ckeditor.js') }}"></script>
+    <title>Runyankole Spell Checker</title>
 </head>
 <body>
-<section id="project" class="hero is-fullheight">
+<section class="hero is-fullheight">
     <div class="hero-head">
-        <h1 class="has-text-centered is-fullwidth is-size-3">Speller</h1>
+        <nav>
+    <div class="nav-wrapper teal">
+      <a href="/" class="brand-logo padding-left">Notes</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/runyankole">Runyankole</a></li>
+          <li><a href="/luganda">Luganda</a></li>
+      </ul>
+    </div>
+  </nav>
     </div>
     <div class="hero-body">
-        <div class="container">
-            <ul>
-                <li><a href="/luganda">Luganda</a></li>
-                <li><a href="/runyankole">Runyankole</a></li>
-            </ul>
+        <div class="container has-text-centered is-size-3">
+            Draft better documents with this beautiful editor, now with Luganda and Runyankole spell checking.
         </div>
     </div>
 </section>

@@ -1,3 +1,10 @@
+String.prototype.replaceAll = function(s1, s2) {
+    return this.replace(
+        new RegExp(  s1.replace(/[.^$*+?()[{\|]/g, '\\$&'),  'g'  ),
+        s2
+    );
+};
+
 let app;
 let app2;
 let editor;
@@ -11,49 +18,25 @@ function strip(html){
    return doc.body.textContent || "";
 }
 
-function onTextChange(event) {
-    console.log(event);
-    const text = strip(editor.getData());
+function onTextChange() {
+    localStorage.setItem('data', editor.getData());
+    let text = strip(editor.getData());
+    ['.', ',', '!', '?'].forEach(symbol => {
+        text = text.replaceAll(symbol, '');
+    });
     const words = text.trim().split(' ');
     app2.spellCheck(words);
 }
 
 function init() {
-    app = new Vue({
-        el: '#project',
-        data: {
-            words : "",
-            suggestions : [],
-            is_active : true,
-            is_searching : false
-        },
-        watch:{
-            words : function () {
-                app.is_searching = true;
-                fetch("/suggest/" + language + "/" + app.words).then(function (result) {
-                    app.is_searching = false;
-                    if (result.ok){
-                        result.json().then(function (data) {
-                            app.is_active = true;
-                            let words = data;
-                            app.suggestions = words;
-                        })
-                    }
-                }).catch(function () {this.is_searching = false});
-            }
-        },
-        methods:{
-            update_words: function (word) {
-                app.words = word;
-                app.is_active = false;
-            },
-        }
-    });
     app2 = new Vue({
         el: '#spell-check',
         data: {
             isKnown: {},
-            suggestions: {},
+            suggestionsFor: '__________',
+            suggestions: [],
+            suggestionsFetching: false,
+            suggestionsVisible: false,
             incorrectlySpelled: [],
             wordInfo: {},
         },
@@ -68,6 +51,7 @@ function init() {
                         fetch("/is-known/" + language + "/" + word).then(response => {
                             if(response.ok){
                                 response.json().then(data => {
+                                    console.log(data);
                                     app2.$set(app2.isKnown, word, data.isKnown);
                                 })
                             } else {
@@ -81,6 +65,30 @@ function init() {
                 });
                 app2.wordInfo = wordInfo;
             },
+            suggest: function (word) {
+                app2.toggleSuggestionList(true);
+                app2.suggestions = [];
+                app2.suggestionsFor = word;
+                app2.suggestionsFetching = true;
+
+                fetch("/suggest/" + language + "/" + word).then(function (result) {
+                    if (result.ok){
+                        result.json().then(function (data) {
+                            app2.suggestions = (data.length === 1 && data[0] === word) ? [] : data;
+                        })
+                    }
+                    app2.suggestionsFetching = false;
+                }).catch(function () {app2.suggestionsFetching = false;});
+            },
+            toggleSuggestionList: function (visible) {
+                app2.suggestionsVisible = visible;
+            },
+            replace: function (word, suggestion) {
+                editor.setData(editor.getData().replaceAll(word, suggestion));
+            },
+            retry: function () {
+                onTextChange();
+            }
         },
         watch: {
             wordInfo: function () {
@@ -101,15 +109,15 @@ function init() {
 window.addEventListener('load', function () {
     init();
     ClassicEditor
-        .create( document.querySelector( '#editor' ), {
-
-        } )
+        .create( document.querySelector( '#editor' ))
         .then(ckEditor => {
             editor = ckEditor;
             editor.editing.view.change( writer => { writer.setAttribute( 'spellcheck', 'false', editor.editing.view.document.getRoot() ); } );
             editor.model.document.on('change:data', eventInfo => {
-                onTextChange(eventInfo);
-            })
+                onTextChange();
+            });
+            const data = localStorage.getItem('data');
+            editor.setData(data ? data : '');
         })
         .catch( error => {
             console.error( error );

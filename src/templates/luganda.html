@@ -4,23 +4,61 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='touchup.css') }}">
-    <script>var language = 'luganda';</script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/nunito/font.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='materialize.min.css') }}">
+    <script>const language = 'luganda';</script>
     <script type="text/javascript" src="{{ url_for('static', filename='vue.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='suggestions.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='ckeditor.js') }}"></script>
     <title>Luganda Spell Checker</title>
 </head>
 <body>
-<section id="project" class="hero is-fullheight">
+<section class="hero is-fullheight">
+    <div class="hero-head">
+        <nav>
+    <div class="nav-wrapper teal">
+      <a href="/" class="brand-logo padding-left">Lunganda Spell Checker</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/runyankole">Runyankole</a></li>
+      </ul>
+    </div>
+  </nav>
+    </div>
     <div class="hero-body">
         <div class="container">
-            <div class="field">
-                <div class="control" :class="{'is-loading':is_searching}">
-                    <input v-model="words" id="box" class="input is-large" type="text" placeholder="...">
-                    <div class="dropdown-menu" :class="{active:is_active}" id="dropdown-menu" role="menu">
-                        <div class="dropdown-content">
-                            <a @click="update_words(suggestion)" v-for="suggestion in suggestions" v-text="suggestion" href="#" class="dropdown-item">
-                            </a>
-                        </div>
+            <div class="columns">
+                <div class="column is-8">
+                    <div class="card">
+                        <textarea spellcheck="false" name="content" id="editor"></textarea>
+                    </div>
+                </div>
+                <div id="spell-check" class="column is-one-quarter is-offset-1 has-text-centered card">
+                    <h4 class="subtitle is-size-3">Misspelled Words</h4>
+                    <div id="actual-words">
+                        <ul class="is-text is-size-5 relative">
+                            <li class="word-holder" v-for="word in incorrectlySpelled">
+                                <span @click="word === suggestionsFor && suggestionsVisible ? toggleSuggestionList(false) : suggest(word)" class="word" v-text="word"></span>
+                                <div class="corrections is-size-6">
+                                    <ul v-if="word === suggestionsFor && suggestionsVisible" class="card">
+                                    <li class="suggestion loader-s" v-if="suggestionsFetching">
+                                      <div class="progress">
+                                          <div class="indeterminate"></div>
+                                      </div>
+                                    </li>
+                                    <li class="suggestion" v-if="!suggestionsFetching && suggestions.length === 0">
+                                        No suggestions
+                                    </li>
+                                    <li class="suggestion" v-if="!suggestionsFetching" v-for="suggestion in suggestions" @click="replace(word, suggestion)">
+                                        <span class="word" v-text="suggestion"></span>
+                                    </li>
+                                </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="is-text is-size-6" v-if="incorrectlySpelled.length < 1">
+                            <span class="is-size-6"><img @click="retry()" class="retry" src="{{ url_for('static', filename='baseline-refresh-24px.svg') }}" alt="Refresh"></span><br>
+                            No misspelled words
+                        </span>
                     </div>
                 </div>
             </div>

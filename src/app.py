@@ -40,7 +40,7 @@ def suggestions_runyankole(word):
 @app.route("/is-known/luganda/<string:word>")
 def is_known_luganda(word):
     setup()
-    return jsonify(len(luganda_checker.known([word.lower()])) > 0)
+    return jsonify({'isKnown': len(luganda_checker.known([word.lower()])) > 0})
 
 
 @app.route("/is-known/runyankole/<string:word>")
