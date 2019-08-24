@@ -118,6 +118,7 @@ window.addEventListener('load', function () {
             });
             const data = localStorage.getItem('data');
             editor.setData(data ? data : '');
+            setTimeout(() => {onTextChange();}, 2000);
         })
         .catch( error => {
             console.error( error );
