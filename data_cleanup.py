@@ -1,27 +1,34 @@
 import json
+import re
+
+
+def clean(word):
+	if len(word) < 0:
+		return word
+	if word[0] == "'":
+		return clean(word[1:])
+	if word[-1] == "'":
+		return clean(word[:-1])
+	return word
 
 
 def do_clean(language, output_raw_words=False):
 	data = ""
-	with open(f"raw_{language}.txt", 'rb') as file:
+	with open(f"raw_{language}.txt", 'r') as file:
 		print("Reading file...")
-		data = str(file.read())
+		data = file.read()
 
 	print("Read done.")
 	data = data.lower()
 	print("Lowercase done.")
 	data = data.replace(' ', "\n")
 	print("Replace done.")
-	final_data = ""
-	for letter in data:
-		if letter in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', "'", "’", '\n']:
-			final_data += letter
-		else:
-			print("Skipping letter.")
+	final_data = re.sub(r"[^\w'’\n ]", '', data)
+	final_data = re.sub(r"[\d_]", '', final_data)
 
 	final_data = final_data.split("\n")
 	final_data.sort()
-	final_data = [word for word in final_data if word is not ""]
+	final_data = [clean(word) for word in final_data if word not in ["", "'", "\n"]]
 
 	dictionary = {}
 	for word in final_data:
@@ -30,7 +37,7 @@ def do_clean(language, output_raw_words=False):
 		except KeyError:
 			dictionary[word] = 1
 
-	with open(f"{language}.json", 'w') as file:
+	with open(f"src/data/{language}.json", 'w') as file:
 		print("Writing to .json file")
 		file.write(str(json.dumps(dictionary)))
 		print("Done.")
@@ -41,9 +48,9 @@ def do_clean(language, output_raw_words=False):
 
 		with open(f"{language}.txt", 'w') as file:
 			print("Writing to .txt file")
-			json.loads(json.dumps(dictionary), encoding='utf8')
 			file.write(raw_words)
 
 
-do_clean('runya')
-do_clean('luganda', True)
+if __name__ == '__main__':
+	do_clean('runya')
+	do_clean('luganda')

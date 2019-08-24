@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="02d7763e-1df3-4165-90e0-10aea534daa0" name="Default" comment="Setup test 4">
-      <change afterPath="$PROJECT_DIR$/src/data/luganda.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/runya.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.py" afterDir="false" />
+    <list default="true" id="02d7763e-1df3-4165-90e0-10aea534daa0" name="Default" comment="Add unicode support">
       <change beforePath="$PROJECT_DIR$/src/static/suggestions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/suggestions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/touchup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/touchup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/luganda.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/luganda.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/runyankole.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/runyankole.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/speller.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/speller.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -53,6 +46,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last.edited.regexp" value="ó" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/static" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -64,14 +58,14 @@
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/data" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/static" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/templates" />
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/data" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
@@ -173,6 +167,7 @@
       <workItem from="1564935318685" duration="15140000" />
       <workItem from="1565143508178" duration="2841000" />
       <workItem from="1565215674443" duration="8088000" />
+      <workItem from="1566639176641" duration="8760000" />
     </task>
     <task id="LOCAL-00001" summary="Setup for heroku deploy">
       <created>1552581633566</created>
@@ -258,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564961080607</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Add unicode support">
+      <created>1566650510592</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1566650510592</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,10 +293,11 @@
     <MESSAGE value="Setup test 2" />
     <MESSAGE value="Setup test 3" />
     <MESSAGE value="Setup test 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Setup test 4" />
+    <MESSAGE value="Add unicode support" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add unicode support" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/runya$app.coverage" NAME="app Coverage Results" MODIFIED="1565230465101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/runya$data_cleanup.coverage" NAME="data_cleanup Coverage Results" MODIFIED="1564936798528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/runya$app.coverage" NAME="app Coverage Results" MODIFIED="1566646630901" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/runya$data_cleanup.coverage" NAME="data_cleanup Coverage Results" MODIFIED="1566645850198" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -21,9 +21,11 @@ function strip(html){
 function onTextChange() {
     localStorage.setItem('data', editor.getData());
     let text = strip(editor.getData());
-    ['.', ',', '!', '?'].forEach(symbol => {
-        text = text.replaceAll(symbol, '');
-    });
+    // ['.', ',', '!', '?', ].forEach(symbol => {
+    //     text = text.replaceAll(symbol, '');
+    // });
+    text = text.replace(new RegExp("[^" + Unicode.w + "'’ ]+", "g"), "");
+    text = text.replace(/\d/g,"");
     const words = text.trim().split(' ');
     app2.spellCheck(words);
 }
